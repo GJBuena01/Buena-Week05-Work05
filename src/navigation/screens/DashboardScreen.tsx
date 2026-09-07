@@ -1,0 +1,229 @@
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+const devices = [
+    {
+        id: 1,
+        name: 'Living Room Light',
+        type: 'Smart Light',
+        icon: 'bulb-outline',
+        status: 'ON',
+    },
+    {
+        id: 2,
+        name: 'Bedroom Fan',
+        type: 'Smart Fan',
+        icon: 'sync-outline',
+        status: 'OFF',
+    },
+    {
+        id: 3,
+        name: 'Front Door Lock',
+        type: 'Smart Lock',
+        icon: 'lock-closed-outline',
+        status: 'LOCKED',
+    },
+];
+
+export default function DashboardScreen() {
+    return (
+        <View style={styles.container}>
+
+            <Text style={styles.greeting}>
+                Good evening
+            </Text>
+
+            <Text style={styles.title}>
+                IoT Dashboard
+            </Text>
+
+            <View style={styles.sensorRow}>
+
+                <View style={styles.sensorCard}>
+                    <View style={styles.sensorHeader}>
+                        <Ionicons
+                            name="water-outline"
+                            size={22}
+                        />
+
+                        <Text style={styles.sensorLabel}>
+                            Humidity
+                        </Text>
+                    </View>
+
+                    <Text style={styles.sensorValue}>
+                        28°C
+                    </Text>
+                </View>
+
+                <View style={styles.sensorCard}>
+                    <View style={styles.sensorHeader}>
+                        <Ionicons
+                            name="water-outline"
+                            size={22}
+                        />
+
+                        <Text style={styles.sensorLabel}>
+                            Humidity
+                        </Text>
+                    </View>
+
+                    <Text style={styles.sensorValue}>
+                        65%
+                    </Text>
+                </View>
+
+            </View>
+
+            <Text style={styles.sectionTitle}>
+                Device Status
+            </Text>
+
+            {/* <View style={styles.deviceCard}>
+
+                <View style={styles.deviceInfo}>
+                    <Text style={styles.deviceIcon}>
+                        💡
+                    </Text>
+
+                    <View>
+                        <Text style={styles.deviceName}>
+                            Living Room Light
+                        </Text>
+
+                        <Text style={styles.deviceType}>
+                            Smart Light
+                        </Text>
+                    </View>
+                </View>
+
+                <Text style={styles.deviceStatus}>
+                    ON
+                </Text>
+
+            </View>
+
+        </View>
+    ); */}
+
+            {devices.map((device) => (
+
+                <View
+                    key={device.id}
+                    style={styles.deviceCard}
+                >
+
+                    <View style={styles.deviceInfo}>
+
+                        <Ionicons
+                            name={device.icon}
+                            size={28}
+                            style={styles.deviceIcon}
+                        />
+
+                        <View>
+                            <Text style={styles.deviceName}>
+                                {device.name}
+                            </Text>
+
+                            <Text style={styles.deviceType}>
+                                {device.type}
+                            </Text>
+                        </View>
+
+                    </View>
+
+                    <Text style={styles.deviceStatus}>
+                        {device.status}
+                    </Text>
+
+                </View>
+
+            ))}
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+
+    container: {
+        flex: 1,
+        padding: 20,
+    },
+
+    greeting: {
+        fontSize: 14,
+    },
+
+    title: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginTop: 5,
+    },
+
+    sensorRow: {
+        flexDirection: 'row',
+        gap: 12,
+        marginTop: 25,
+    },
+
+    sensorCard: {
+        flex: 1,
+        padding: 20,
+        borderRadius: 12,
+        backgroundColor: '#eeeeee',
+    },
+
+    sensorLabel: {
+        fontSize: 14,
+    },
+
+    sensorValue: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        marginTop: 10,
+    },
+
+    sectionTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 30,
+        marginBottom: 12,
+    },
+
+    deviceCard: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 18,
+        borderRadius: 12,
+        backgroundColor: '#eeeeee',
+    },
+
+    deviceInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+
+    deviceIcon: {
+        fontSize: 28,
+        marginRight: 12,
+    },
+
+    deviceName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+
+    deviceType: {
+        fontSize: 13,
+        marginTop: 3,
+    },
+
+    deviceStatus: {
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+
+});
